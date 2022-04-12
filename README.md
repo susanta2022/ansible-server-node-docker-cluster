@@ -111,5 +111,8 @@ interpreter_python = /usr/bin/python3
 #module_lang    = C
 #module_set_locale = False
 ```
-
+## finaly check that ansible server node configure is done or not by using flowing command
+``` bash
+bash-4.2# ansible demo -a "ls -la"
+```
 
