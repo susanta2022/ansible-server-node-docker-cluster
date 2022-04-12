@@ -7,8 +7,7 @@ creating a testing environment for ansible server and node cluster with the help
 ## Installation
 1. download project file from git [repsitory](https://github.com/susanta2022/ansible-server-node-docker-cluster/archive/refs/heads/master.zip)</br>
 2. chenge this projetct name as your requirement like</br>
-3. ``` python
-susanta@server# mv ansible-server-node-docker-cluster <project_name>
-```
+``` python
+susanta@server# mv ansible-server-node-docker-cluster <project_name>```
 
 
