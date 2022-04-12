@@ -15,8 +15,8 @@ root@amz-linux# mv ansible-server-node-docker-cluster <project_name>
 root@amz-linux# cd <project_name>
 root@amz-linux# docker-compose up --build
 ```
-## server node ssh setup procedure
-1. open a terminal run this flowing command 
+## ansible server ssh setup procedure
+1. open a terminal for ansible server run this flowing command 
 ``` bash
 root@amz-linux# docker exec -it server bash
 bash-4.2# systemctl start sshd
@@ -25,6 +25,19 @@ bash-4.2# rm -r nologin
 bash-4.2# cd ../..
 
 ```
+
+## ansible node ssh setup procedure
+1. open a terminal for ansible node(here node1 node2 ) run this flowing command 
+``` bash
+root@amz-linux# docker exec -it node1 bash
+bash-4.2# systemctl start sshd
+bash-4.2# cd run
+bash-4.2# rm -r nologin
+bash-4.2# cd ../..
+
+```
+2. you have to follow the same command for node2 
+
 
 
 
