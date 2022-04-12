@@ -1,0 +1,157 @@
+version: '3.9'
+services:
+  server:
+    tty: true
+    privileged: true
+    container_name: server
+    build:
+      context: .
+      dockerfile: server-dockerfile
+
+        #command: sudo systemctl start sshd
+        
+        #image:  ubuntu:latest       
+        #mem_limit: 2022m
+        #mem_reservation: 128M
+        #cpus: 2.5
+        #ports:
+        #- 22:22
+
+    environment:
+      - TZ=Asia/Kolkata
+
+    volumes:
+      - type: volume
+        source: server
+        target: /data
+        volume:
+          nocopy: false
+      - type: bind
+        source: ./Downloads
+        target: /root/Downloads
+
+    networks:
+      ansible_network:
+        ipv4_address: 192.168.10.29
+
+    restart: unless-stopped
+
+  node1:
+    tty: true
+    privileged: true
+    container_name: node1
+    build: .
+      #image:  ubuntu:latest
+      #mem_limit: 2022m
+      #mem_reservation: 128M
+      #cpus: 2.5
+
+      #ports:
+      #- 23:22
+
+    #command: python3 sshd_exec.py
+
+    environment:
+      - TZ=Asia/Kolkata
+
+    volumes:
+      - type: volume
+        source: node1
+        target: /data
+        volume:
+          nocopy: false
+
+      - type: bind
+        source: ./Downloads
+        target: /root/Downloads
+
+
+
+    networks:
+      ansible_network:
+        ipv4_address: 192.168.10.26
+
+      private_network:
+        ipv4_address: 192.168.11.20
+
+    restart: unless-stopped
+
+  node2:
+    tty: true
+    privileged: true
+    container_name: node2
+    build: .
+
+      #command: python3 sshd_exec.py
+      #image:  ubuntu:latest
+      #mem_limit: 2022m
+      #mem_reservation: 128M
+      #cpus: 2.5
+
+      #ports:
+      #- 22:22
+
+    environment:
+      - TZ=Asia/Kolkata
+
+
+
+    volumes:
+      - type: volume
+        source: node2
+        target: /data
+        volume:
+          nocopy: false
+
+
+    networks:
+
+      ansible_network:
+        ipv4_address: 192.168.10.20
+
+
+    restart: unless-stopped
+
+      #build:
+      #context: .
+      #shm_size: 256mb
+
+    #shm_size: 512mb
+
+networks:
+  ansible_network:
+    driver: bridge
+    #internal : true
+    driver_opts:
+      com.docker.network.enable_ipv6: "true"
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.10.0/24
+          gateway: 192.168.10.1
+        - subnet: "2001:3984:3989::/64"
+          gateway: "2001:3984:3989::1"
+
+  private_network:
+    driver: bridge
+    internal: true
+
+    driver_opts:
+      com.docker.network.enable_ipv6: "true"
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.11.0/24
+          gateway: 192.168.11.1
+
+volumes:
+  server:
+    driver: local
+    #external: true
+  node1:
+    driver: local
+    #external: true
+  node2:
+    driver: local
+      #external: true
+      
