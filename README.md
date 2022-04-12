@@ -11,7 +11,7 @@ creating a testing environment for ansible server and node cluster with the help
 susanta@server# mv ansible-server-node-docker-cluster <project_name>
 ```
 3. after change the project name run this flowing command like that
-'''python
+```bash
 susanta@server# cd <project_name>
 susanta@server# docker-compose up --build
 ```
