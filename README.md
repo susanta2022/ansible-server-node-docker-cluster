@@ -38,6 +38,40 @@ bash-4.2# cd ../..
 ```
 2. you have to follow the same command for node2 
 
+## generated ssh-key from ansible server and pass to the correspondence
+1. make sure about the ssh key passphrase and don't give any passphrase make it blank
+2. after creating ssh-key pass to the corresponding node
+3. the flowing example like bellow --
+
+``` bash
+root@amz-linux# docker exec -it server bash
+bash-4.2# ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/root/.ssh/id_rsa): <press enter>
+Enter passphrase (empty for no passphrase): <again press enter>
+Enter same passphrase again: <again press enter>
+Your identification has been saved in /root/.ssh/id_rsa.
+Your public key has been saved in /root/.ssh/id_rsa.pub.
+The key fingerprint is:
+SHA256:x6lvgvze3EUNHvCrMn7qR3nIsQJ1DnaxgPyhXidH95s root@38ba281834d6
+The key's randomart image is:
++---[RSA 2048]----+
+|       . .. o.   |
+|        o =.++.  |
+|         = B..+. |
+|        o.+.=. =.|
+|       .So+= =+ +|
+|        .o. *o.E |
+|     . .. oo...  |
+|      o .=.+o.   |
+|       oo+B+.    |
++----[SHA256]-----+
+
+bash-4.2# cd /root
+bash-4.2# cd .ssh
+bash-4.2# ssh-copy-id ansadmin@node1
+bash-4.2# ssh-copy-id ansadmin@node2
+
 
 
 
