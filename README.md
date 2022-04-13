@@ -15,6 +15,16 @@ root@amz-linux# mv ansible-server-node-docker-cluster <project_name>
 root@amz-linux# cd <project_name>
 root@amz-linux# docker-compose up --build
 ```
+## check all containers are running properly or not
+``` bash
+root@amz-linux# docker ps
+
+CONTAINER ID   IMAGE                                 COMMAND                  CREATED         STATUS          PORTS                                                                                                                                  NAMES
+124626ab319b   <project_name>_node1                   "/usr/sbin/init"         3 minutes ago   Up 2 minutes                                                                                                                                           node1
+cf46c653e1aa   <project_name>_server                  "/usr/sbin/init"         3 minutes ago   Up 2 minutes                                                                                                                                           server
+37da0c2f5105   <project_name>_node2                   "/usr/sbin/init"         3 minutes ago   Up 2 minutes                                                                                                                                           node2
+```
+
 ## ansible server ssh setup procedure
 1. open a terminal for ansible server run this flowing command 
 ``` bash
