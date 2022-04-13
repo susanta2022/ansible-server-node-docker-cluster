@@ -59,6 +59,7 @@ bash-4.2# cd ../..
 
 ``` bash
 root@amz-linux# docker exec -it server bash
+bash-4.2# su - ansadmin
 bash-4.2# ssh-keygen
 Generating public/private rsa key pair.
 Enter file in which to save the key (/root/.ssh/id_rsa): <press enter>
