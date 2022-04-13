@@ -51,7 +51,13 @@ bash-4.2# cd ../..
 
 ```
 2. you have to follow the same command for node2 
-
+``` bash
+root@amz-linux# docker exec -it node2 bash
+bash-4.2# systemctl start sshd
+bash-4.2# cd run
+bash-4.2# rm -r nologin
+bash-4.2# cd ../..
+```
 ## generated ssh-key from ansible server and pass to the corresponding node
 1. make sure about the ssh key passphrase and don't give any passphrase make it blank
 2. after creating ssh-key pass to the corresponding node
